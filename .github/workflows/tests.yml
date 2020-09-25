@@ -36,15 +36,18 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Installation (deps and package)
+      # we install with flit --pth-file,
+      # so that coverage will be recorded for the module
       run: |
-        pip install .[testing]
+        pip install flit
+        flit install --deps=production --extras=test --pth-file
 
     - name: Run pytest
       run: |
         pytest --cov=mdformat_plugin --cov-report=xml --cov-report=term-missing
 
     - name: Upload to Codecov
-      if: matrix.python-version == 3.7
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == 3.7
       uses: codecov/codecov-action@v1
       with:
         name: pytests-py3.7

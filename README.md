@@ -13,7 +13,7 @@ This package utilises [flit](https://flit.readthedocs.io) as the build engine, a
 To install these development dependencies:
 
 ```bash
-pip install flit tox
+pip install tox
 ```
 
 To run the tests:
@@ -21,6 +21,14 @@ To run the tests:
 ```bash
 tox
 ```
+
+and with test coverage:
+
+```bash
+tox -e py37-cov
+```
+
+The easiest way to write tests, is to edit tests/fixtures.md
 
 To run the code formatting and style checks:
 
@@ -46,6 +54,7 @@ tox -e py37-hook
 Either use flit directly:
 
 ```bash
+pip install flit
 flit publish
 ```
 
