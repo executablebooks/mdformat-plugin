@@ -1,4 +1,4 @@
-"""An mdformat plugin for rendering tables."""
+"""An mdformat plugin for..."""
 
 from .plugin import render_token, update_mdit  # noqa: F401
 

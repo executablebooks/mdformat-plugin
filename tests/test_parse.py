@@ -1,4 +1,4 @@
-from mdformat_tables import __version__
+from mdformat_plugin import __version__
 
 
 def test_basic():
