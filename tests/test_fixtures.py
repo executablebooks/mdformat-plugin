@@ -13,7 +13,5 @@ fixtures = read_fixture_file(FIXTURE_PATH)
 )
 def test_fixtures(line, title, text, expected):
     output = render_text(text, extensions={"plugin"})
-    print(f'Original:\n {text}')
-    print('------')
-    print(f'New:\n  {output}')
-    assert output.rstrip() == expected.rstrip()#, output
+    print(output)
+    assert output.rstrip() == expected.rstrip(), output
