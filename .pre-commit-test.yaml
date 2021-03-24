@@ -7,5 +7,3 @@ repos:
       files: "tests/pre-commit-test.md"
       types: [markdown]
       language: system
-      additional_dependencies:
-        - mdformat-plugin

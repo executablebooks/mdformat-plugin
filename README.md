@@ -49,6 +49,15 @@ To run the pre-commit hook test:
 tox -e py37-hook
 ```
 
+### Required changes for a new plugin
+This demonstration is setup with a plugin named `plugin` there are a number of locations to change. At a top level for a plugin
+`foo` at least the following changes are required
+- Global find and replace `mdformat_plugin` to `mdformat_foo` including folder names.
+- Global find and replace `mdformat-plugin` to `mdformat-foo` including folder names.
+- `tests/test_fixtures.py`: `output = render_text(text, extensions={"plugin"})` becomes `output = render_text(text, extensions={"foo"})`
+- `pyproject.toml` in addition to the global find and replace: `plugin = "mdformat_plugin"` becomes `foo = "mdformat_foo"`
+
+Do not forget to update authorship / maintainers in `pyproject.toml` as well.
 ## Publish to PyPi
 
 Either use flit directly:
