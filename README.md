@@ -14,7 +14,7 @@ At a top level for a plugin `foo` at least the following changes are required
 
 - Global find and replace `mdformat_plugin` to `mdformat_foo` including folder names.
 - Global find and replace `mdformat-plugin` to `mdformat-foo` including folder names.
-- `tests/test_fixtures.py`: `output = render_text(text, extensions={"plugin"})` becomes `output = render_text(text, extensions={"foo"})`
+- `tests/test_fixtures.py`: `output = mdformat.text(text, extensions={"plugin"})` becomes `output = mdformat.text(text, extensions={"foo"})`
 - `pyproject.toml` in addition to the global find and replace: `plugin = "mdformat_plugin"` becomes `foo = "mdformat_foo"`
 
 Do not forget to update authorship / maintainers in `pyproject.toml` as well.
