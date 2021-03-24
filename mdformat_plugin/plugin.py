@@ -1,8 +1,8 @@
-from typing import List, Optional, Tuple
+from typing import Any, Mapping, MutableMapping
 
 from markdown_it import MarkdownIt
-from markdown_it.token import Token
-from mdformat.renderer import MDRenderer
+from mdformat.renderer import RenderTreeNode
+from mdformat.renderer.typing import RendererFunc
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
@@ -10,15 +10,20 @@ def update_mdit(mdit: MarkdownIt) -> None:
     pass
 
 
-def render_token(
-    renderer: MDRenderer,
-    tokens: List[Token],
-    index: int,
-    options: dict,
-    env: dict,
-) -> Optional[Tuple[str, int]]:
-    """Convert token(s) to a string, or return None if no render method available.
+def _render_table(
+    node: RenderTreeNode,
+    renderer_funcs: Mapping[str, RendererFunc],
+    options: Mapping[str, Any],
+    env: MutableMapping,
+) -> str:
+    """Render a `RenderTreeNode` of type "table".
 
-    :returns: (text, index) where index is of the final "consumed" token
+    Change "table" to the name of the syntax you want to render.
     """
-    return None
+    return ""
+
+
+# A mapping from syntax tree node to a function that renders it.
+# This can be used to overwrite renderer functions of existing syntax
+# or add support for new syntax.
+RENDERER_FUNCS: Mapping[str, RendererFunc] = {"table": _render_table}
