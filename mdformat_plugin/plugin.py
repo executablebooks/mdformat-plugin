@@ -1,8 +1,8 @@
-from typing import Any, Mapping, MutableMapping
+from typing import Mapping
 
 from markdown_it import MarkdownIt
-from mdformat.renderer import RenderTreeNode
-from mdformat.renderer.typing import RendererFunc
+from mdformat.renderer import RenderContext, RenderTreeNode
+from mdformat.renderer.typing import Render
 
 
 def update_mdit(mdit: MarkdownIt) -> None:
@@ -10,12 +10,7 @@ def update_mdit(mdit: MarkdownIt) -> None:
     pass
 
 
-def _render_table(
-    node: RenderTreeNode,
-    renderer_funcs: Mapping[str, RendererFunc],
-    options: Mapping[str, Any],
-    env: MutableMapping,
-) -> str:
+def _render_table(node: RenderTreeNode, context: RenderContext) -> str:
     """Render a `RenderTreeNode` of type "table".
 
     Change "table" to the name of the syntax you want to render.
@@ -23,7 +18,7 @@ def _render_table(
     return ""
 
 
-# A mapping from syntax tree node to a function that renders it.
+# A mapping from syntax tree node type to a function that renders it.
 # This can be used to overwrite renderer functions of existing syntax
 # or add support for new syntax.
-RENDERER_FUNCS: Mapping[str, RendererFunc] = {"table": _render_table}
+RENDERERS: Mapping[str, Render] = {"table": _render_table}
