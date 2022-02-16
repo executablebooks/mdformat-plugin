@@ -1,25 +1,27 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires = ["flit_core >=3.2.0,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.flit.metadata]
-module = "mdformat_plugin"
-author = "Chris Sewell"
-author-email = "executablebooks@gmail.com"
-description-file = "README.md"
-home-page = "https://github.com/executablebooks/mdformat-plugin"
+[project]
+name = "mdformat_plugin"
+authors = [
+    { name = "Chris Sewell", email = "executablebooks@gmail.com" },
+]
+readme = "README.md"
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-keywords = "mdformat,markdown,markdown-it"
+keywords = ["mdformat", "markdown", "markdown-it"]
+requires-python = ">=3.7"
+dependencies = [
+    "mdformat >=0.7.0,<0.8.0",
+]
+dynamic = ["version", "description"]
 
-requires-python=">=3.6.1"
-requires=["mdformat >=0.7.0,<0.8.0"]
-
-[tool.flit.metadata.requires-extra]
+[project.optional-dependencies]
 test = [
     "pytest~=6.0",
     "coverage",
@@ -27,7 +29,10 @@ test = [
 ]
 dev = ["pre-commit"]
 
-[tool.flit.entrypoints."mdformat.parser_extension"]
+[project.urls]
+Homepage = "https://github.com/executablebooks/mdformat-plugin"
+
+[project.entry-points."mdformat.parser_extension"]
 plugin = "mdformat_plugin"
 
 [tool.flit.sdist]
